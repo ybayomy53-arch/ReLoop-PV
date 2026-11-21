@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#060D17"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><title>ReLoop-PV</title>
+<style>
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+:root{--c:#22d3ee;--g:#34d399;--r:#fb4b6b;--a:#fbbf24;--t:#e8f1fb;--m:#7f93ad}
+[hidden]{display:none!important}
+html,body{background:#060D17;color:var(--t);font:14px/1.4 "Segoe UI",Roboto,system-ui,sans-serif}
+body{min-height:100vh;background:radial-gradient(600px 420px at 95% -5%,#0b3a4d66,transparent),radial-gradient(500px 420px at -10% 45%,#06402f44,transparent),#060D17}
+header{position:sticky;top:0;z-index:20;background:#060d17e6;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff12;padding-top:env(safe-area-inset-top)}
+.tb{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;gap:8px}
+.br{display:flex;gap:9px;align-items:center}.br b{font-size:17px;letter-spacing:.02em}.br small{display:flex;align-items:center;gap:5px;color:var(--m);font-size:11px}
+#dot{width:7px;height:7px;border-radius:50%;background:#5b6b80}#dot.on{background:var(--g);box-shadow:0 0 8px var(--g)}
+.hb{display:flex;gap:6px;align-items:center}
+.ib{width:36px;height:36px;border-radius:11px;border:1px solid #ffffff1c;background:#ffffff0d;color:var(--t);font-size:15px}
+.btn{border:0;border-radius:12px;padding:10px 14px;font:700 13px inherit;font-family:inherit;color:#04121a;background:linear-gradient(135deg,var(--c),var(--g));box-shadow:0 0 18px #22d3ee44;cursor:pointer}
+.btn:active{transform:scale(.97)}.btn.s{background:#ffffff12;color:var(--t);box-shadow:none;border:1px solid #ffffff1f}.b{display:block;width:100%;margin:8px 0}
+#ban{margin:0 12px 8px;padding:10px 12px;border-radius:12px;background:#b91c3c;border:1px solid #ff9aae;font-weight:600;font-size:13px;animation:pl 1s infinite}
+@keyframes pl{50%{box-shadow:0 0 26px #ff2d55;background:#e11d48}}
+.pg{display:none;padding:12px 12px 96px;max-width:520px;margin:0 auto}.pg.on{display:grid;gap:10px}
+.card{background:linear-gradient(145deg,#ffffff10,#ffffff04);border:1px solid #ffffff18;border-radius:18px;padding:13px;backdrop-filter:blur(16px);box-shadow:0 8px 30px #0006,inset 0 1px #ffffff14;transition:.3s}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.w2{grid-column:span 2}
+small,.mu{color:var(--m);font-size:11px}
+.v{font:700 28px ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}u{text-decoration:none;color:var(--m);font-size:12px}
+.lim{font-size:10px;color:var(--a);margin-top:2px}
+.bar{display:block;height:3px;background:#ffffff14;border-radius:2px;margin-top:8px;overflow:hidden}.bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c),var(--g));transition:width .8s}
+.bad{border-color:var(--r)!important;box-shadow:0 0 22px #fb4b6b55!important}.bad .v{color:var(--r)}.bad .bar b{background:var(--r)}
+.sy{display:flex;justify-content:space-between;align-items:center}
+.hs{display:block;margin:6px auto 0;width:min(100%,270px);height:auto;touch-action:manipulation}stop{transition:stop-color 1s}
+.hl{fill:var(--m);font-size:9px}.hv{fill:var(--t);font:700 13px ui-monospace,monospace}
+.pw{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center}
+.gs{width:150px}.gs text{fill:var(--t)}.gt{font:700 26px ui-monospace,monospace}.gu{font-size:9px;fill:var(--m)!important}
+#ga{transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1),stroke .4s;filter:drop-shadow(0 0 5px #22d3ee99)}.bad #ga{stroke:var(--r);filter:drop-shadow(0 0 6px #fb4b6b)}
+.kv{font:700 20px ui-monospace,monospace;margin-bottom:6px}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row .btn{flex:1}
+#cv{width:100%;height:280px;display:block}.lg{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:11px}.lg i{display:inline-block;width:10px;height:3px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.le{display:flex;flex-direction:column;border-left:3px solid var(--r);background:#fb4b6b12;padding:8px 10px;border-radius:0 10px 10px 0;margin-bottom:7px;font-size:13px}.le b{font-size:11px;color:var(--a)}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:20;display:flex;justify-content:center;gap:6px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#060d17f2;backdrop-filter:blur(16px);border-top:1px solid #ffffff14}
+nav button{position:relative;flex:1;max-width:160px;border:0;background:none;color:var(--m);padding:7px 4px;border-radius:12px;font:600 11px inherit;font-family:inherit}nav button.on{color:var(--c);background:#22d3ee14;box-shadow:inset 0 0 0 1px #22d3ee40}nav span{display:block;font-size:18px}
+#nb{position:absolute;top:2px;right:18px;background:var(--r);color:#fff;border-radius:9px;padding:0 5px;font-size:10px}#nb:empty{display:none}
+.md{position:fixed;inset:0;z-index:50;background:#000b;backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center}
+.sh{background:#0b1626;border:1px solid #ffffff1f;border-radius:22px 22px 0 0;width:100%;max-width:520px;max-height:92vh;overflow:auto;padding:18px 18px calc(18px + env(safe-area-inset-bottom))}.sh h3{margin-bottom:8px}.sh h4{margin:12px 0 4px;color:var(--m)}
+label{display:block;margin:10px 0 4px;font-size:12px;color:var(--m)}input{width:100%;padding:11px;border-radius:10px;border:1px solid #ffffff22;background:#ffffff0d;color:var(--t);font:16px ui-monospace,monospace}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}td,th{border:1px solid #8884;padding:5px;text-align:left}
+#ts{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:#0b1626;border:1px solid var(--c);padding:9px 14px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:60;font-size:13px}#ts.on{opacity:1;transform:translate(-50%,0)}
+@media print{body>*:not(#rep){display:none!important}#rep{position:static;background:none;display:block}#rep .sh{background:#fff;color:#000;border:0;max-height:none}#rep .np{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+details summary{cursor:pointer;color:var(--c);font-weight:600}#raw{margin-top:8px;max-height:170px;overflow:auto;font:11px/1.5 ui-monospace,Menlo,monospace;color:var(--g);white-space:pre-wrap;word-break:break-all}
+</style></head><body>
+<header><div class="tb"><div class="br"><svg width="28" height="28" viewBox="0 0 26 26"><rect x="3" y="3" width="20" height="20" rx="5" fill="none" stroke="#22d3ee" stroke-width="2"/><path d="M7 16l4-5 3 3 5-6" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"/></svg><div><b>ReLoop-PV</b><small><i id="dot"></i><span id="st">OFFLINE</span></small></div></div>
+<div class="hb"><button class="ib" id="mute" aria-label="Mute">🔊</button><button class="ib" id="gear" aria-label="Settings">⚙</button><button class="btn" id="conn">Connect HC-05</button></div></div><div id="ban" hidden></div></header>
+<main>
+<section class="pg on" id="p0">
+<div class="card sy"><div><small>Next auto-sync</small><div class="v" id="cd">02:00</div><small id="lu">Awaiting first packet</small></div><button class="btn" id="rd">⟳ Instant Read (R)</button></div>
+<div class="row" id="dm" hidden><button class="btn s" data-m="n" data-l="Normal">Normal</button><button class="btn s" data-m="t" data-l="Thermal choking">Thermal Choking</button><button class="btn s" data-m="p" data-l="Power drop">Power Drop</button></div>
+<div class="grid" id="mc"></div>
+<div class="card"><div class="sy"><small>Backsheet heatmap · tap panel to probe</small><b id="pr" class="mu"></b></div>
+<svg id="hm" class="hs" viewBox="0 0 240 260"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop id="s3" offset=".083"/><stop id="s2" offset=".5"/><stop id="s1" offset=".917"/></linearGradient><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><pattern id="cg" width="21.67" height="24" patternUnits="userSpaceOnUse" x="20" y="10"><rect width="21.67" height="24" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="1.2"/></pattern></defs>
+<rect x="20" y="10" width="130" height="240" rx="8" fill="url(#hg)"/><rect x="20" y="10" width="130" height="240" rx="8" fill="url(#cg)"/><rect x="20" y="10" width="130" height="240" rx="8" fill="url(#gl)" stroke="#ffffff55"/>
+<g fill="#060D17" stroke="#fff" stroke-width="2"><circle cx="85" cy="30" r="6"/><circle cx="85" cy="130" r="6"/><circle cx="85" cy="230" r="6"/></g>
+<line id="pl" x1="20" x2="150" stroke="#fff" stroke-dasharray="4" style="display:none"/>
+<text class="hl" x="160" y="26">T3 · TOP</text><text class="hv" id="h3" x="160" y="42">--</text><text class="hl" x="160" y="126">T2 · MID</text><text class="hv" id="h2" x="160" y="142">--</text><text class="hl" x="160" y="226">T1 · BOTTOM</text><text class="hv" id="h1" x="160" y="242">--</text></svg></div>
+<div class="card pw" id="pc"><svg class="gs" viewBox="0 0 140 140"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs><circle cx="70" cy="70" r="56" fill="none" stroke="#ffffff14" stroke-width="10"/><circle id="ga" cx="70" cy="70" r="56" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="351.86" stroke-dashoffset="351.86" transform="rotate(-90 70 70)"/><circle id="mk" r="3.5" fill="#fbbf24"/><text x="70" y="75" id="gp" text-anchor="middle" class="gt">0.00</text><text x="70" y="92" text-anchor="middle" class="gu">WATTS · 5 W PANEL</text></svg>
+<div><small>Voltage</small><div class="kv" id="gv">-- V</div><small>Current (68 Ω load)</small><div class="kv" id="gi">-- mA</div><div class="lim" id="lp"></div></div></div>
+<details class="card" id="rw"><summary>Live raw serial monitor</summary><pre id="raw">Waiting for HC-05…</pre></details>
+</section>
+<section class="pg" id="p1"><div class="card"><small>Live trend · °C (left) · Power W (right)</small><canvas id="cv"></canvas><div class="lg"><span><i style="background:#22d3ee"></i>T1</span><span><i style="background:#34d399"></i>T2</span><span><i style="background:#fb923c"></i>T3</span><span><i style="background:#e879f9"></i>Power</span><span><i style="background:#fb4b6b"></i>Min power</span></div></div></section>
+<section class="pg" id="p2"><div class="row"><button class="btn" id="rb">📄 Full Diagnostic Report</button><button class="btn s" id="clr">Clear log</button></div><div class="card"><small>Alert history</small><div id="lg" style="margin-top:8px"></div></div></section>
+</main>
+<nav><button class="on"><span>◉</span>Dashboard</button><button><span>📈</span>Live Charts</button><button><span>🚨</span>Alerts &amp; Report<i id="nb"></i></button></nav>
+<div id="ts"></div>
+<div class="md" id="mcn" hidden><div class="sh"><h3>Connect telemetry</h3><p class="mu">Arduino Uno + HC-05 · 9600 baud · DATA,T1,T2,T3,V,P,dT</p>
+<button class="btn b" id="bN">HC-05 (Android native)</button><button class="btn s b" id="bS">Web Serial</button><button class="btn s b" id="bB">Web Bluetooth (BLE module)</button>
+<h4>Live exhibition demo</h4><div class="row"><button class="btn s" data-m="n" data-l="Normal">Normal</button><button class="btn s" data-m="t" data-l="Thermal choking">Thermal Fault</button><button class="btn s" data-m="p" data-l="Power drop">Power Drop</button></div>
+<div class="row" style="margin-top:12px"><button class="btn s" id="bX">Disconnect</button><button class="btn s" data-x>Close</button></div></div></div>
+<div class="md" id="mset" hidden><div class="sh"><h3>Alarm limits</h3><label>Max ΔT grad (T3−T1) °C · thermal choking</label><input id="id" type="number" step="0.01"><label>Max T avg °C · overheat / clamp loosening</label><input id="it" type="number" step="0.1"><label>Min power W · soiling / shading / wiring</label><input id="ip" type="number" step="0.01">
+<h4>Offline demo (testing only)</h4><div class="row"><button class="btn s" data-m="n" data-l="Normal">Normal</button><button class="btn s" data-m="t" data-l="Thermal choking">Thermal fault</button><button class="btn s" data-m="p" data-l="Power drop">Power drop</button></div><div class="row" style="margin-top:8px"><button class="btn s" id="bD">Stop demo / Disconnect</button></div>
+<div class="row" style="margin-top:14px"><button class="btn" id="sv">Save limits</button><button class="btn s" data-x>Cancel</button></div></div></div>
+<div class="md" id="rep" hidden><div class="sh"><div id="rbd"></div><div class="row np" style="margin-top:12px"><button class="btn" onclick="window.Android?Android.print():print()">🖨 Print / Save PDF</button><button class="btn s" data-x>Close</button></div></div></div>
+<script>
+const $=i=>document.getElementById(i),f=(x,n)=>(+x).toFixed(n),now=()=>new Date().toLocaleString([],{hour12:false}),tm=()=>new Date().toLocaleTimeString([],{hour12:false});
+let L={d:1.5,t:58,p:3.7};try{Object.assign(L,JSON.parse(localStorage.getItem('rlpv')))}catch(e){}
+const H=[],LOG=[];let prevP=0,act={},mute=0,cd=120,mode=0,live=0,actx,wr,buf='',pY=null,cur=null,bt=0;
+$('mc').innerHTML=[['t1','T1 · Bottom · A1'],['t2','T2 · Middle · A2'],['t3','T3 · Top · A3'],['ta','T avg'],['dt','Thermal stratification ΔT = T3 − T1']].map(([k,n],i)=>`<div class="card${i>3?' w2':''}" id="c_${k}"><small>${n}</small><div><span class="v" id="v_${k}">--</span><u> °C</u></div><div class="lim" id="l_${k}"></div><i class="bar"><b id="b_${k}"></b></i></div>`).join('');
+const hc=t=>`hsl(${Math.max(0,Math.min(190,190-(t-48)/14*190))} 92% 52%)`;
+function lims(){['t1','t2','t3'].forEach(k=>$('l_'+k).textContent='Ref max '+f(L.t,1)+' °C');$('l_ta').textContent='Max alarm '+f(L.t,1)+' °C · overheat';$('l_dt').textContent='Max alarm '+f(L.d,2)+' °C · thermal choking';$('lp').textContent='Min power '+f(L.p,2)+' W';const a=(Math.min(L.p,5)/5*360-90)*Math.PI/180;$('mk').setAttribute('cx',70+56*Math.cos(a));$('mk').setAttribute('cy',70+56*Math.sin(a))}
+function msg(t){const e=$('ts');e.textContent=t;e.className='on';clearTimeout(e.h);e.h=setTimeout(()=>e.className='',2800)}
+function setSt(t,on){$('st').textContent=t;$('dot').className=on?'on':'';$('dm').hidden=!mode}
+const unlock=()=>{try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();actx.state=='suspended'&&actx.resume()}catch(e){}};addEventListener('pointerdown',unlock);
+function beep(){if(mute||!actx)return;try{const o=actx.createOscillator(),g=actx.createGain(),t=actx.currentTime;o.type='square';o.frequency.setValueAtTime(900,t);o.frequency.setValueAtTime(650,t+.14);g.gain.value=.07;o.connect(g);g.connect(actx.destination);o.start();o.stop(t+.3)}catch(e){}}
+function upd(d){cd=120;d.ta=(d.t1+d.t2+d.t3)/3;d.dt=d.t3-d.t1;d.i=d.v/68*1000;d.time=tm();const F={};
+if(d.dt>L.d)F.th=`Thermal choking: ΔT ${f(d.dt,2)} °C > ${f(L.d,2)} °C`;
+if(d.ta>L.t)F.oh=`Overheat / clamp loosening: Tavg ${f(d.ta,1)} °C > ${f(L.t,1)} °C`;
+if(d.p<L.p)F.pw=`Power drop: ${f(d.p,2)} W < ${f(L.p,2)} W (soiling / shading / wiring)`;
+else if(prevP>0&&(prevP-d.p)/prevP>.1)F.pw=`Sudden power drop ${f((prevP-d.p)/prevP*100,0)} % (soiling / shading / wiring)`;
+prevP=d.p;H.push(d);if(H.length>150)H.shift();cur=d;let nw=0;
+for(const k in F)if(!act[k]){nw=1;LOG.unshift({t:now(),m:F[k]})}
+act=F;paint();const on=Object.keys(act).length;$('ban').hidden=!on;$('ban').textContent='⚠ ALERT — '+Object.values(act).join(' • ');
+if(on&&!bt)bt=setInterval(beep,1000);if(!on&&bt){clearInterval(bt);bt=0}window.Android&&Android.focus&&Android.focus(!!on&&!mute);
+if(nw){beep();(window.Android&&Android.vibrate?Android.vibrate('0,400,150,400,150,600'):navigator.vibrate&&navigator.vibrate([400,150,400,150,600]));cd=120;setTimeout(rd,2500)}
+rlog();draw()}
+function paint(){const d=cur;if(!d)return;
+const s=(k,v,mx)=>{$('v_'+k).textContent=f(v,2);$('b_'+k).style.width=Math.max(0,Math.min(100,v/mx*100))+'%'};
+s('t1',d.t1,L.t);s('t2',d.t2,L.t);s('t3',d.t3,L.t);s('ta',d.ta,L.t);s('dt',d.dt,L.d);
+$('c_dt').classList.toggle('bad',!!act.th);$('c_ta').classList.toggle('bad',!!act.oh);$('pc').classList.toggle('bad',!!act.pw);
+[1,2,3].forEach(n=>{$('s'+n).style.stopColor=hc(d['t'+n]);$('h'+n).textContent=f(d['t'+n],2)+' °C'});
+$('ga').style.strokeDashoffset=351.86*(1-Math.max(0,Math.min(1,d.p/5)));$('gp').textContent=f(d.p,2);$('gv').textContent=f(d.v,2)+' V';$('gi').textContent=f(d.i,0)+' mA';
+$('lu').textContent='Last packet '+d.time;probe()}
+function tp(y){const a=[[30,cur.t3],[130,cur.t2],[230,cur.t1]];y=Math.max(30,Math.min(230,y));const i=y<130?0:1;return a[i][1]+(a[i+1][1]-a[i][1])*(y-a[i][0])/(a[i+1][0]-a[i][0])}
+function probe(){if(pY==null||!cur)return;const l=$('pl');l.setAttribute('y1',pY);l.setAttribute('y2',pY);l.style.display='block';$('pr').textContent=f(tp(pY),2)+' °C'}
+['pointerdown','pointermove'].forEach(t=>$('hm').addEventListener(t,e=>{if(t=='pointermove'&&!e.buttons)return;const r=$('hm').getBoundingClientRect();pY=Math.max(10,Math.min(250,(e.clientY-r.top)/r.height*260));probe()}));
+function rlog(){$('lg').innerHTML=LOG.length?LOG.map(e=>`<div class="le"><b>${e.t}</b><span>${e.m}</span></div>`).join(''):'<p class="mu">No alerts. System nominal ✔</p>';$('nb').textContent=LOG.length||''}
+function draw(){const c=$('cv');if(!$('p1').classList.contains('on'))return;const w=c.clientWidth,h=c.clientHeight,r=devicePixelRatio||1;c.width=w*r;c.height=h*r;const x=c.getContext('2d');x.scale(r,r);x.font='10px sans-serif';const n=H.length;
+if(n<2){x.fillStyle='#7f93ad';x.fillText('Waiting for telemetry…',16,28);return}
+const pl=32,pr=30,pt=12,pb=20,cw=w-pl-pr,ch=h-pt-pb,ts=H.flatMap(d=>[d.t1,d.t2,d.t3]),lo=Math.floor(Math.min(...ts)-1),hi=Math.ceil(Math.max(...ts)+1);
+const X=i=>pl+cw*i/(n-1),Yt=v=>pt+ch*(1-(v-lo)/(hi-lo)),Yp=v=>pt+ch*(1-Math.min(v,5)/5);
+x.strokeStyle='#ffffff14';x.fillStyle='#7f93ad';
+for(let i=0;i<=4;i++){const y=pt+ch*i/4;x.beginPath();x.moveTo(pl,y);x.lineTo(w-pr,y);x.stroke();x.textAlign='right';x.fillText(f(hi-(hi-lo)*i/4,0),pl-4,y+3);x.textAlign='left';x.fillText(f(5-5*i/4,1),w-pr+4,y+3)}
+x.textAlign='left';x.fillText(H[0].time,pl,h-5);x.textAlign='right';x.fillText(H[n-1].time,w-pr,h-5);
+const ln=(k,col,Y)=>{x.beginPath();x.strokeStyle=col;x.shadowColor=col;x.shadowBlur=8;x.lineWidth=2;x.lineJoin='round';H.forEach((d,i)=>i?x.lineTo(X(i),Y(d[k])):x.moveTo(X(i),Y(d[k])));x.stroke()};
+ln('t1','#22d3ee',Yt);ln('t2','#34d399',Yt);ln('t3','#fb923c',Yt);ln('p','#e879f9',Yp);
+x.shadowBlur=0;x.strokeStyle='#fb4b6b';x.setLineDash([4,4]);x.beginPath();x.moveTo(pl,Yp(L.p));x.lineTo(w-pr,Yp(L.p));x.stroke();x.setLineDash([])}
+function feed(s){buf+=s;const p=buf.split(/\r?\n/);buf=p.pop();p.forEach(parse);if(/^DATA(,-?[\d.]+){6}$/.test(buf.trim())){parse(buf);buf=''}if(buf.length>400)buf=''}
+function parse(l){const m=l.trim().split(',');if(m[0]!=='DATA'||m.length<7)return;const n=m.slice(1,7).map(Number);if(n.some(isNaN))return;upd({t1:n[0],t2:n[1],t3:n[2],v:n[3],p:n[4]})}
+window.receiveBTData=feed;
+function send(c){try{if(window.Android&&Android.send)return Android.send(c)?1:0;if(wr){wr(c);return 1}}catch(e){}return 0}
+function rd(){cd=120;if(mode)gen();else if(!send('R'))msg('Not connected. Tap Connect HC-05.')}
+function gen(){const t=performance.now()/1000;let b=54.9+Math.sin(t/9)*.6+Math.random()*.2,g=.85+Math.random()*.15,V=16.6+Math.random()*.2;
+if(mode=='t'){g=2.1+Math.random()*.6;b+=.4}if(mode=='p')V=14.3+Math.random()*.2;
+upd({t1:b,t2:b+g*.45,t3:b+g,v:V,p:V*V/68})}
+async function ser(){try{const p=await navigator.serial.requestPort();await p.open({baudRate:9600});wr=async c=>{const w=p.writable.getWriter();await w.write(new TextEncoder().encode(c));w.releaseLock()};mode=0;live=1;setSt('SERIAL LIVE',1);$('mcn').hidden=1;
+(async()=>{const r=p.readable.getReader(),dc=new TextDecoder();try{for(;;){const{value,done}=await r.read();if(done)break;feed(dc.decode(value,{stream:true}))}}catch(e){}r.releaseLock();live=0;wr=0;setSt('OFFLINE',0)})()}catch(e){msg('Web Serial unavailable or cancelled')}}
+async function ble(){try{const d=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:[0xffe0]}),g=await d.gatt.connect(),ch=await(await g.getPrimaryService(0xffe0)).getCharacteristic(0xffe1);await ch.startNotifications();const dc=new TextDecoder();ch.addEventListener('characteristicvaluechanged',e=>feed(dc.decode(e.target.value)));wr=c=>ch.writeValue(new TextEncoder().encode(c));mode=0;live=1;setSt('BLE LIVE',1);$('mcn').hidden=1;d.addEventListener('gattserverdisconnected',()=>{live=0;wr=0;setSt('OFFLINE',0)})}catch(e){msg('Web Bluetooth unavailable or cancelled')}}
+$('bS').onclick=()=>navigator.serial?ser():msg('Web Serial not supported in this browser');
+$('bB').onclick=()=>navigator.bluetooth?ble():msg('Web Bluetooth not supported in this browser');
+$('bN').onclick=()=>{$('mcn').hidden=1;window.Android&&Android.connect()};
+$('bX').onclick=()=>{mode=0;live=0;wr=0;setSt('OFFLINE',0);$('mcn').hidden=1};
+document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{unlock();mode=b.dataset.m;live=0;setSt('DEMO · '+b.dataset.l,1);$('mcn').hidden=1;$('mset').hidden=1;gen();cd=120});
+$('conn').onclick=()=>{unlock();window.Android?Android.connect():$('mcn').hidden=0};$('rd').onclick=()=>{unlock();rd()};
+$('mute').onclick=()=>{mute=!mute;$('mute').textContent=mute?'🔇':'🔊'};
+$('gear').onclick=()=>{$('id').value=L.d;$('it').value=L.t;$('ip').value=L.p;$('mset').hidden=0};
+$('sv').onclick=()=>{const a=+$('id').value,b=+$('it').value,c=+$('ip').value;if(!(a>0&&b>0&&c>0))return msg('Enter values above 0');L={d:a,t:b,p:c};try{localStorage.setItem('rlpv',JSON.stringify(L))}catch(e){}lims();$('mset').hidden=1;msg('Limits saved');paint();if(mode||live)rd()};
+$('clr').onclick=()=>{LOG.length=0;rlog()};
+$('rb').onclick=()=>{const n=H.length,a=k=>H.map(d=>d[k]),mn=k=>n?Math.min(...a(k)):0,mx=k=>n?Math.max(...a(k)):0,av=k=>n?a(k).reduce((p,q)=>p+q,0)/n:0,
+row=(l,k,u,g)=>`<tr><td>${l}</td><td>${f(mn(k),g)}</td><td>${f(av(k),g)}</td><td>${f(mx(k),g)}</td><td>${u}</td></tr>`;
+$('rbd').innerHTML=`<h2>ReLoop-PV · Full Diagnostic Report</h2><p>${now()} · ${n} samples · ${$('st').textContent}</p><h3>Status: ${Object.keys(act).length?'⚠ FAULT ACTIVE':'✔ NOMINAL'}</h3>`+(cur?`<p>Latest: T1 ${f(cur.t1,2)} · T2 ${f(cur.t2,2)} · T3 ${f(cur.t3,2)} °C · Tavg ${f(cur.ta,2)} °C · ΔT ${f(cur.dt,2)} °C · ${f(cur.v,2)} V · ${f(cur.i,0)} mA · ${f(cur.p,2)} W</p>`:'<p>No data yet.</p>')+`<table><tr><th>Metric</th><th>Min</th><th>Avg</th><th>Max</th><th>Unit</th></tr>${row('T1 Bottom','t1','°C',2)}${row('T2 Middle','t2','°C',2)}${row('T3 Top','t3','°C',2)}${row('T avg','ta','°C',2)}${row('ΔT grad','dt','°C',2)}${row('Voltage','v','V',2)}${row('Current','i','mA',0)}${row('Power','p','W',2)}</table><p><b>Limits:</b> ΔT max ${f(L.d,2)} °C · Tavg max ${f(L.t,1)} °C · Power min ${f(L.p,2)} W</p><h3>Alert history (${LOG.length})</h3>`+(LOG.map(e=>`<p>• ${e.t} — ${e.m}</p>`).join('')||'<p>No alerts recorded.</p>');$('rep').hidden=0};
+document.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>b.closest('.md').hidden=1);
+document.querySelectorAll('.md').forEach(m=>m.onclick=e=>{if(e.target==m)m.hidden=1});
+const nb=[...document.querySelectorAll('nav button')];nb.forEach((b,i)=>b.onclick=()=>{nb.forEach((q,j)=>q.classList.toggle('on',i==j));document.querySelectorAll('.pg').forEach((p,j)=>p.classList.toggle('on',i==j));scrollTo(0,0);draw()});
+addEventListener('resize',draw);
+setInterval(()=>{cd-=mode?20:1;if(cd<=0){cd=120;if(mode||live)rd()}$('cd').textContent=String(cd/60|0).padStart(2,'0')+':'+String(cd%60).padStart(2,'0')},1000);
+try{const m=new Blob([JSON.stringify({name:'ReLoop-PV',short_name:'ReLoop-PV',display:'standalone',background_color:'#060D17',theme_color:'#060D17',start_url:location.href,icons:[{src:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#060D17"/><path d="M14 40l12-14 9 9 15-17" fill="none" stroke="#22d3ee" stroke-width="6" stroke-linecap="round"/></svg>'),sizes:'any',type:'image/svg+xml'}]})],{type:'application/manifest+json'}),l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(m);document.head.append(l)}catch(e){}
+const raw=[];
+window.onArduinoPacket=l=>{raw.push(tm()+'  '+l);if(raw.length>40)raw.shift();$('raw').textContent=raw.join('\n');$('raw').scrollTop=1e6;if(!mode)parse(l)};
+window.onBtState=(s,m)=>{if(s=='CONNECTED'){mode=0;live=1;setSt('HC-05 CONNECTED',1);msg('HC-05 connected')}else if(s=='CONNECTING'){mode=0;live=0;setSt('CONNECTING… '+m,0)}else{live=0;setSt(s=='ERROR'?'ERROR':'OFFLINE',0);if(m)msg(m)}};
+$('bD').onclick=()=>{mode=0;live=0;wr=0;window.Android&&Android.disconnect&&Android.disconnect();setSt('OFFLINE',0);$('mset').hidden=1};
+lims();rlog();
+</script></body></html>
